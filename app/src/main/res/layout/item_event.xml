@@ -1,0 +1,55 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+<com.google.android.material.textview.MaterialTextView
+    android:id="@+id/tvTime"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:background="@drawable/shape_for_time"
+    tools:text="0000:00:00"
+    android:padding="8dp"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="16dp"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivFavorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/tvTime"
+        app:layout_constraintEnd_toEndOf="@id/tvTime"
+        app:srcCompat="@drawable/ic_unenabled_star"
+        app:layout_constraintTop_toBottomOf="@id/tvTime"
+        android:layout_marginVertical="8dp"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvFirstPlayer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/tvTime"
+        app:layout_constraintEnd_toEndOf="@id/tvTime"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:lines="1"
+        tools:text="First Player"
+        app:layout_constraintTop_toBottomOf="@id/ivFavorite"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvSecondPlayer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/tvTime"
+        app:layout_constraintEnd_toEndOf="@id/tvTime"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:lines="1"
+        tools:text="First Player"
+        app:layout_constraintTop_toBottomOf="@id/tvFirstPlayer"
+        android:layout_marginVertical="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
