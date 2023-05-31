@@ -20,23 +20,22 @@ class SportViewModel(application: Application) : AndroidViewModel(application), 
 
     init {
         networkManager = App.getInstance(application.applicationContext).networkManager
-        startTimer()
     }
 
     override val coroutineContext: CoroutineContext
-        get() = Dispatchers.IO
+        get() = Dispatchers.Main
 
 
-    fun loadData() = launch {
+    fun loadData() = launch(Dispatchers.IO) {
         val sportList = networkManager.loadData()
         withContext(Dispatchers.Main) {
-            sportLD.postValue(sportList)
+            sportLD.value = sportList
+            startTimer()
         }
     }
 
     fun changeFavorite(event: Event) {
         event.isFavorite = !event.isFavorite
-
         sportLD.postValue(sportLD.value)
     }
 
@@ -46,16 +45,11 @@ class SportViewModel(application: Application) : AndroidViewModel(application), 
         sportLD.postValue(sportLD.value)
     }
 
-    private fun startTimer() = launch {
+    private fun startTimer() = launch(Dispatchers.IO) {
         while (true) {
             delay(1_000)
-            sportLD.value?.forEach { sport ->
-                sport.listEvent.forEach { event ->
-                    event.time = event.time - 1
-                }
-            }
             withContext(Dispatchers.Main) {
-                sportLD.postValue(sportLD.value)
+                sportLD.value = sportLD.value
             }
         }
     }
